@@ -5,8 +5,12 @@ using UnityEngine.UI;
 
 public class scr_gamecontroller : MonoBehaviour
 {
+    public GameObject clickermenu;
+    public GameObject upgrademenu;
+
     //allows the game to switch between menus
     public int gamestate;
+    public int menustate;
 
     //basic stats
     public int pizzas;
@@ -26,28 +30,37 @@ public class scr_gamecontroller : MonoBehaviour
 
     //buttons
     public Button clicker;
-    public Button pep;
-    public Button mush;
-    public Button butt;
-    public Button spec;
-    public Button chees;
-    public Button deep;
-    public Button celeb;
-    public Button square;
-    public Button perfect;
-    public Button zoom;
-    public Button freddy;
 
-    public Button ovenn;
-    public Button auto;
-    public Button pree;
-    public Button chef;
-    public Button top;
-    public Button sent;
-    public Button conv;
-    public Button side;
-    public Button fact;
-    public Button tower;
+    //buttons
+    public GameObject page1;
+    public GameObject page2;
+    public GameObject page3;
+    //button text
+    #region
+
+    public Text pep;
+    public Text mush;
+    public Text butt;
+    public Text spec;
+    public Text chees;
+    public Text deep;
+    public Text celeb;
+    public Text square;
+    public Text perfect;
+    public Text zoom;
+    public Text freddy;
+
+    public Text ovenn;
+    public Text auto;
+    public Text pree;
+    public Text chef;
+    public Text top;
+    public Text sent;
+    public Text conv;
+    public Text side;
+    public Text fact;
+    public Text tower;
+    #endregion
 
     //screen sprite objects that flip between eachother
     public GameObject mainscreen;
@@ -55,6 +68,7 @@ public class scr_gamecontroller : MonoBehaviour
 
 
     //upgrade price values
+    #region
     public int pepperoni = 16;
     public int mushrooms = 32;
     public int butteredcrust = 48;
@@ -67,28 +81,32 @@ public class scr_gamecontroller : MonoBehaviour
     public int zoomer = 1000;
     public int mascot = 2000;
 
-    public int oven = 50;           public int val1 = 0;
-    public int autoboxer = 100;     public int val2 = 0;
-    public int preprepper = 150;    public int val3 = 0;
-    public int chefbot = 200;       public int val4 = 0;
-    public int topchef = 400;       public int val5 = 0;
-    public int sentient = 800;      public int val6 = 0;
-    public int conveyor = 1600;     public int val7 = 0;
-    public int sidelocation = 3200; public int val8 = 0;
-    public int factory = 6400;      public int val9 = 0;
-    public int pizzatower = 12800;  public int val10 = 0;
+    public int oven = 50;           public int val1 = 1;
+    public int autoboxer = 100;     public int val2 = 1;
+    public int preprepper = 150;    public int val3 = 1;
+    public int chefbot = 200;       public int val4 = 1;
+    public int topchef = 400;       public int val5 = 1;
+    public int sentient = 800;      public int val6 = 1;
+    public int conveyor = 1600;     public int val7 = 1;
+    public int sidelocation = 3200; public int val8 = 1;
+    public int factory = 6400;      public int val9 = 1;
+    public int pizzatower = 12800;  public int val10 = 1;
+    #endregion
 
 
     // Start is called before the first frame update
     void Start()
     {
+        gamestate = 0;
+        menustate = 0;
+
         money = 0;
         price = 8;
-        slicespersecond = 1;
+        slicespersecond = 0;
 
         mainscreen.SetActive(true);
         updatescreen.SetActive(false);
-        gamestate = 0;
+       
         slices = 0;
         pizzas = 0;
         slicetext.text = "";
@@ -105,6 +123,10 @@ public class scr_gamecontroller : MonoBehaviour
       
         //clicker menu
         if (gamestate == 0) {
+
+            clickermenu.SetActive(true);
+            upgrademenu.SetActive(false);
+            if (clicker.interactable == false) { clicker.interactable = true; }
             mainscreen.SetActive(true);
             updatescreen.SetActive(false);
             slicetext.text = "Slices: " + slices;
@@ -115,17 +137,52 @@ public class scr_gamecontroller : MonoBehaviour
         //upgrade menu
         if (gamestate == 1)
         {
+            upgrademenu.SetActive(true);
+            clickermenu.SetActive(false);
+            if (clicker.interactable == true) { clicker.interactable = false; }
             updatescreen.SetActive(true);
             mainscreen.SetActive(false);
             slicetext.text = "";
             pizzatext.text = "";
+
+            if (menustate == 0) { page1.SetActive(true); page2.SetActive(false); page3.SetActive(false);}
+            if (menustate == 1) { page1.SetActive(false); page2.SetActive(true); page3.SetActive(false); }
+            if (menustate == 2) { page1.SetActive(false); page2.SetActive(false); page3.SetActive(true); }
         }
+
+        
+
 
         //if 8 slices are made, converts those slices to a pie, gets rid of the slices, and adds the money to the total
         if (slices >= 8) { pizzas++; money += price; slices = 0; }
 
+        //slice adder
         secondtimer -= Time.deltaTime;
         if (secondtimer <= 0) {slices += slicespersecond; secondtimer = 1;}
+
+
+        //button text updater
+        pep.text = " Pepperoni Bank (+$1 per pie)        " + pepperoni;
+        mush.text = " Mushrooms (+$2 per pie)        " + mushrooms;
+        butt.text = " Buttered Crusts (+$3 per pie)        " + butteredcrust;
+        spec.text = " Special Cheese (+$4 per pie)        " + specialcheese;
+        chees.text = " Cheesy Crusts (+$8 per pie)        " + cheesycrust;
+        deep.text = " Deep Dish (+$16 per pie)        " + deepdish;
+        celeb.text = " Celebrity Endorsement (+$25 per pie)        " + celebrity;
+        square.text = " Square Pizza (+$50 per pie)        " + squarepizza;
+        perfect.text = " Perfect Pizza (+$100 per pie)        " + perfectpizza;
+        zoom.text = " Zoomer Based Marketing Scheme (+$200 per pie)        " + zoomer;
+        freddy.text = " Mascot Character (+$500 per pie)        " + mascot;
+        ovenn.text = " Bigger Better Oven (+2 Slices/s)        " + oven;
+        auto.text = " Auto-Boxer (+3 Slices/s)        " + autoboxer;
+        pree.text = " Pre-Prepper (+5 Slices/s)        " + preprepper;
+        chef.text = " Chef-Bot (+8 Slices/s)       " + chefbot;
+        top.text = " Top Chef (+16 Slices/s)        " + topchef;
+        sent.text = " Sentient Pizza (+32 Slices/s)        " + sentient;
+        conv.text = " Conveyor Oven (+64 Slices/s)        " + conveyor;
+        side.text = " Side Location (+128 Slices/s)        " + sidelocation;
+        fact.text = " Pizza Factory (+256 Slices/s)        " + factory;
+        tower.text = " Pizza Tower (+512 Slices/s)        " + pizzatower;
 
 
 
