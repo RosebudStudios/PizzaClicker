@@ -7,6 +7,7 @@ public class scr_gamecontroller : MonoBehaviour
 {
     public GameObject clickermenu;
     public GameObject upgrademenu;
+    public GameObject startmenu;
 
     //allows the game to switch between menus
     public int gamestate;
@@ -97,14 +98,14 @@ public class scr_gamecontroller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gamestate = 0;
+        gamestate = 2;
         menustate = 0;
 
         money = 0;
         price = 8;
         slicespersecond = 0;
 
-        mainscreen.SetActive(true);
+        mainscreen.SetActive(false);
         updatescreen.SetActive(false);
        
         slices = 0;
@@ -119,19 +120,21 @@ public class scr_gamecontroller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moneytext.text = "Money: $" + money;
+
       
         //clicker menu
         if (gamestate == 0) {
 
             clickermenu.SetActive(true);
             upgrademenu.SetActive(false);
+            startmenu.SetActive(false);
             if (clicker.interactable == false) { clicker.interactable = true; }
             mainscreen.SetActive(true);
             updatescreen.SetActive(false);
             slicetext.text = "Slices: " + slices;
             pizzatext.text = "Pizzas: " + pizzas;
-            
+            moneytext.text = "Money: $" + money;
+
         }
 
         //upgrade menu
@@ -139,17 +142,32 @@ public class scr_gamecontroller : MonoBehaviour
         {
             upgrademenu.SetActive(true);
             clickermenu.SetActive(false);
+            startmenu.SetActive(false);
             if (clicker.interactable == true) { clicker.interactable = false; }
             updatescreen.SetActive(true);
             mainscreen.SetActive(false);
             slicetext.text = "";
             pizzatext.text = "";
+            moneytext.text = "Money: $" + money;
 
             if (menustate == 0) { page1.SetActive(true); page2.SetActive(false); page3.SetActive(false);}
             if (menustate == 1) { page1.SetActive(false); page2.SetActive(true); page3.SetActive(false); }
             if (menustate == 2) { page1.SetActive(false); page2.SetActive(false); page3.SetActive(true); }
         }
 
+        //start menu
+        if (gamestate == 2)
+        {
+            upgrademenu.SetActive(false);
+            clickermenu.SetActive(false);
+            updatescreen.SetActive(false);
+            mainscreen.SetActive(false);
+            startmenu.SetActive(true);
+            if (clicker.interactable == true) { clicker.interactable = false; }
+            slicetext.text = "";
+            pizzatext.text = "";
+            moneytext.text = "";
+        }
         
 
 
