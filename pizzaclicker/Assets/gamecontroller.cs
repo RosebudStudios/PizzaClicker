@@ -63,10 +63,6 @@ public class scr_gamecontroller : MonoBehaviour
     public Text tower;
     #endregion
 
-    //screen sprite objects that flip between eachother
-    public GameObject mainscreen;
-    public GameObject updatescreen;
-
 
     //upgrade price values
     #region
@@ -104,9 +100,6 @@ public class scr_gamecontroller : MonoBehaviour
         money = 0;
         price = 8;
         slicespersecond = 0;
-
-        mainscreen.SetActive(false);
-        updatescreen.SetActive(false);
        
         slices = 0;
         pizzas = 0;
@@ -129,8 +122,6 @@ public class scr_gamecontroller : MonoBehaviour
             upgrademenu.SetActive(false);
             startmenu.SetActive(false);
             if (clicker.interactable == false) { clicker.interactable = true; }
-            mainscreen.SetActive(true);
-            updatescreen.SetActive(false);
             slicetext.text = "Slices: " + slices;
             pizzatext.text = "Pizzas: " + pizzas;
             moneytext.text = "Money: $" + money;
@@ -144,8 +135,6 @@ public class scr_gamecontroller : MonoBehaviour
             clickermenu.SetActive(false);
             startmenu.SetActive(false);
             if (clicker.interactable == true) { clicker.interactable = false; }
-            updatescreen.SetActive(true);
-            mainscreen.SetActive(false);
             slicetext.text = "";
             pizzatext.text = "";
             moneytext.text = "Money: $" + money;
@@ -160,8 +149,6 @@ public class scr_gamecontroller : MonoBehaviour
         {
             upgrademenu.SetActive(false);
             clickermenu.SetActive(false);
-            updatescreen.SetActive(false);
-            mainscreen.SetActive(false);
             startmenu.SetActive(true);
             if (clicker.interactable == true) { clicker.interactable = false; }
             slicetext.text = "";
