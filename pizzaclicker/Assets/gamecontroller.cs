@@ -8,6 +8,7 @@ public class scr_gamecontroller : MonoBehaviour
     public GameObject clickermenu;
     public GameObject upgrademenu;
     public GameObject startmenu;
+    public GameObject resetmenu;
 
     //allows the game to switch between menus
     public int gamestate;
@@ -147,6 +148,7 @@ public class scr_gamecontroller : MonoBehaviour
         //start menu
         if (gamestate == 2)
         {
+            resetmenu.SetActive(false);
             upgrademenu.SetActive(false);
             clickermenu.SetActive(false);
             startmenu.SetActive(true);
@@ -155,7 +157,18 @@ public class scr_gamecontroller : MonoBehaviour
             pizzatext.text = "";
             moneytext.text = "";
         }
-        
+
+        if (gamestate == 3)
+        {
+            resetmenu.SetActive(true);
+            upgrademenu.SetActive(false);
+            clickermenu.SetActive(false);
+            startmenu.SetActive(false);
+            if (clicker.interactable == true) { clicker.interactable = false; }
+            slicetext.text = "";
+            pizzatext.text = "";
+            moneytext.text = "";
+        }
 
 
         //if 8 slices are made, converts those slices to a pie, gets rid of the slices, and adds the money to the total
