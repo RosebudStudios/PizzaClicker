@@ -10,6 +10,17 @@ public class scr_gamecontroller : MonoBehaviour
     public GameObject startmenu;
     public GameObject resetmenu;
 
+    public Button pizzabutton;
+    public Sprite image0;
+    public Sprite image1;
+    public Sprite image2;
+    public Sprite image3;
+    public Sprite image4;
+    public Sprite image5;
+    public Sprite image6;
+    public Sprite image7;
+
+
     //allows the game to switch between menus
     public int gamestate;
     public int menustate;
@@ -170,9 +181,17 @@ public class scr_gamecontroller : MonoBehaviour
             moneytext.text = "";
         }
 
+        if (slices == 0) { pizzabutton.image.sprite = image0; }
+        if (slices == 1) { pizzabutton.image.sprite = image1; }
+        if (slices == 2) { pizzabutton.image.sprite = image2; }
+        if (slices == 3) { pizzabutton.image.sprite = image3; }
+        if (slices == 4) { pizzabutton.image.sprite = image4; }
+        if (slices == 5) { pizzabutton.image.sprite = image5; }
+        if (slices == 6) { pizzabutton.image.sprite = image6; }
+        if (slices == 7) { pizzabutton.image.sprite = image7; }
 
         //if 8 slices are made, converts those slices to a pie, gets rid of the slices, and adds the money to the total
-        if (slices >= 8) { pizzas++; money += price; slices = 0; }
+        if (slices >= 8) { pizzas++; money += price; slices-=8; }
 
         //slice adder
         secondtimer -= Time.deltaTime;
