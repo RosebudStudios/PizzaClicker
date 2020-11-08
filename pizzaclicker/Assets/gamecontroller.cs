@@ -48,6 +48,9 @@ public class scr_gamecontroller : MonoBehaviour
     public GameObject page1;
     public GameObject page2;
     public GameObject page3;
+    public GameObject page4;
+    public GameObject page5;
+    public GameObject page6;
     //button text
     #region
 
@@ -151,9 +154,12 @@ public class scr_gamecontroller : MonoBehaviour
             pizzatext.text = "";
             moneytext.text = "Money: $" + money;
 
-            if (menustate == 0) { page1.SetActive(true); page2.SetActive(false); page3.SetActive(false);}
-            if (menustate == 1) { page1.SetActive(false); page2.SetActive(true); page3.SetActive(false); }
-            if (menustate == 2) { page1.SetActive(false); page2.SetActive(false); page3.SetActive(true); }
+            if (menustate == 0) { page1.SetActive(true); page2.SetActive(false); page3.SetActive(false); page4.SetActive(false); page5.SetActive(false); page6.SetActive(false); }
+            if (menustate == 1) { page1.SetActive(false); page2.SetActive(true); page3.SetActive(false); page4.SetActive(false); page5.SetActive(false); page6.SetActive(false); }
+            if (menustate == 2) { page1.SetActive(false); page2.SetActive(false); page3.SetActive(true); page4.SetActive(false); page5.SetActive(false); page6.SetActive(false); }
+            if (menustate == 3) { page1.SetActive(false); page2.SetActive(false); page3.SetActive(false); page4.SetActive(true); page5.SetActive(false); page6.SetActive(false); }
+            if (menustate == 4) { page1.SetActive(false); page2.SetActive(false); page3.SetActive(false); page4.SetActive(false); page5.SetActive(true); page6.SetActive(false); }
+            if (menustate == 5) { page1.SetActive(false); page2.SetActive(false); page3.SetActive(false); page4.SetActive(false); page5.SetActive(false); page6.SetActive(true); }
         }
 
         //start menu
@@ -190,36 +196,35 @@ public class scr_gamecontroller : MonoBehaviour
         if (slices == 6) { pizzabutton.image.sprite = image6; }
         if (slices == 7) { pizzabutton.image.sprite = image7; }
 
+        //slice adder
+        secondtimer -= Time.deltaTime;
+        if (secondtimer <= 0) { slices += slicespersecond; secondtimer = 1; }
+
         //if 8 slices are made, converts those slices to a pie, gets rid of the slices, and adds the money to the total
         if (slices >= 8) { pizzas++; money += price; slices-=8; }
 
-        //slice adder
-        secondtimer -= Time.deltaTime;
-        if (secondtimer <= 0) {slices += slicespersecond; secondtimer = 1;}
-
-
         //button text updater
-        pep.text = " Pepperoni Bank (+$1 per pie)        " + pepperoni;
-        mush.text = " Mushrooms (+$2 per pie)        " + mushrooms;
-        butt.text = " Buttered Crusts (+$3 per pie)        " + butteredcrust;
-        spec.text = " Special Cheese (+$4 per pie)        " + specialcheese;
-        chees.text = " Cheesy Crusts (+$8 per pie)        " + cheesycrust;
-        deep.text = " Deep Dish (+$16 per pie)        " + deepdish;
-        celeb.text = " Celebrity Endorsement (+$25 per pie)        " + celebrity;
-        square.text = " Square Pizza (+$50 per pie)        " + squarepizza;
-        perfect.text = " Perfect Pizza (+$100 per pie)        " + perfectpizza;
-        zoom.text = " Zoomer Based Marketing Scheme (+$200 per pie)        " + zoomer;
-        freddy.text = " Mascot Character (+$500 per pie)        " + mascot;
-        ovenn.text = " Bigger Better Oven (+2 Slices/s)        " + oven;
-        auto.text = " Auto-Boxer (+3 Slices/s)        " + autoboxer;
-        pree.text = " Pre-Prepper (+5 Slices/s)        " + preprepper;
-        chef.text = " Chef-Bot (+8 Slices/s)       " + chefbot;
-        top.text = " Top Chef (+16 Slices/s)        " + topchef;
-        sent.text = " Sentient Pizza (+32 Slices/s)        " + sentient;
-        conv.text = " Conveyor Oven (+64 Slices/s)        " + conveyor;
-        side.text = " Side Location (+128 Slices/s)        " + sidelocation;
-        fact.text = " Pizza Factory (+256 Slices/s)        " + factory;
-        tower.text = " Pizza Tower (+512 Slices/s)        " + pizzatower;
+        pep.text =  "$" + pepperoni;
+        mush.text = "$" + mushrooms;
+        butt.text = "$" + butteredcrust;
+        spec.text = "$" + specialcheese;
+        chees.text = "$" + cheesycrust;
+        deep.text = "$" + deepdish;
+        celeb.text = "$" + celebrity;
+        square.text = "$" + squarepizza;
+        perfect.text = "$" + perfectpizza;
+        zoom.text = "$" + zoomer;
+        freddy.text = "$" + mascot;
+        ovenn.text = "$" + oven;
+        auto.text = "$" + autoboxer;
+        pree.text = "$" + preprepper;
+        chef.text = "$" + chefbot;
+        top.text = "$" + topchef;
+        sent.text = "$" + sentient;
+        conv.text = "$" + conveyor;
+        side.text = "$" + sidelocation;
+        fact.text = "$" + factory;
+        tower.text = "$" + pizzatower;
 
 
 

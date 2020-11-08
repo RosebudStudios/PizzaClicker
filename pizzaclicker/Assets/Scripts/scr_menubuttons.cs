@@ -14,12 +14,18 @@ public class scr_menubuttons : MonoBehaviour
         {
             if (gc.GetComponent<scr_gamecontroller>().menustate == 0) { gc.GetComponent<scr_gamecontroller>().menustate = 1; }
             else if(gc.GetComponent<scr_gamecontroller>().menustate == 1) { gc.GetComponent<scr_gamecontroller>().menustate = 2; }
-            else if (gc.GetComponent<scr_gamecontroller>().menustate == 2) { gc.GetComponent<scr_gamecontroller>().menustate = 0; }
+            else if (gc.GetComponent<scr_gamecontroller>().menustate == 2) { gc.GetComponent<scr_gamecontroller>().menustate = 3; }
+            else if (gc.GetComponent<scr_gamecontroller>().menustate == 3) { gc.GetComponent<scr_gamecontroller>().menustate = 4; }
+            else if (gc.GetComponent<scr_gamecontroller>().menustate == 4) { gc.GetComponent<scr_gamecontroller>().menustate = 5; }
+            else if (gc.GetComponent<scr_gamecontroller>().menustate == 5) { gc.GetComponent<scr_gamecontroller>().menustate = 0; }
         }
 
         if (!direction)
         {
-            if (gc.GetComponent<scr_gamecontroller>().menustate == 0) { gc.GetComponent<scr_gamecontroller>().menustate = 2; }
+            if (gc.GetComponent<scr_gamecontroller>().menustate == 0) { gc.GetComponent<scr_gamecontroller>().menustate = 5; }
+            else if (gc.GetComponent<scr_gamecontroller>().menustate == 5) { gc.GetComponent<scr_gamecontroller>().menustate = 4; }
+            else if (gc.GetComponent<scr_gamecontroller>().menustate == 4) { gc.GetComponent<scr_gamecontroller>().menustate = 3; }
+            else if (gc.GetComponent<scr_gamecontroller>().menustate == 3) { gc.GetComponent<scr_gamecontroller>().menustate = 2; }
             else if (gc.GetComponent<scr_gamecontroller>().menustate == 2) { gc.GetComponent<scr_gamecontroller>().menustate = 1; }
             else if (gc.GetComponent<scr_gamecontroller>().menustate == 1) { gc.GetComponent<scr_gamecontroller>().menustate = 0; }
         }
